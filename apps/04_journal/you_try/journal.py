@@ -1,9 +1,18 @@
-"""File IO for our journal application."""
+"""
+This is the journal module.
+
+It provides functionality for loading and saving a journal to disk.
+"""
 import os
 
 
 def save(name, data):
-    """Save the journal to disk."""
+    """
+    This method saves a journal to disk
+
+    :param name: The base name of the journal to save.
+    :param data: The journal data to save to disk.
+    """
 
     filename = _journal(name)
     print('... saving journal to {}'.format(filename))
@@ -13,7 +22,12 @@ def save(name, data):
 
 
 def load(name):
-    """Load the journal from disk."""
+    """
+    This method creates and loads a new journal.
+
+    :param name: The base name of the journal to load.
+    :return: A new journal data structure populated with the file data.
+    """
     data = []
     filename = _journal(name)
     try:
@@ -27,12 +41,22 @@ def load(name):
 
 
 def add_entry(text, data):
-    """Add an entry to the journal."""
+    """
+    Add an entry to the journal data structure.
+
+    :param text: The text data to add to the data structure.
+    :param data:  An instance of journal data structure (just a list).
+    """
     text = text.strip()
     if text:
         data.append(text)
 
 
 def _journal(name):
-    """Return the absolute path to the journal."""
+    """
+    Return the absolute path to the journal.
+
+    :param name: The base name of the journal.
+    :return: An absolute filepath to the journal's location on disk.
+    """
     return os.path.abspath(os.path.join('.', 'journal', name))
